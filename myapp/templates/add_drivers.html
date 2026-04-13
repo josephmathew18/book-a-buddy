@@ -11,7 +11,7 @@
         font-weight: bold;
     }
 </style>
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 
 <p style="color:white" class="username">Welcome {{ request.user.username }} ({{ request.user.role }})</p>
 
@@ -122,9 +122,9 @@
     }
 </style>
 
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/custom.js"></script>
+<script src="{% static \'js/jquery-3.4.1.min.js\' %}"></script>
+<script src="{% static \'js/bootstrap.js\' %}"></script>
+<script src="{% static \'js/custom.js\' %}"></script>
 </body>
 
 </html>
