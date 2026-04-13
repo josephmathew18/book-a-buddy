@@ -149,7 +149,7 @@ def user_logout(request):
 @login_required
 def book_service(request):
      # Directly compare the user's role
-    if request.user.role != 'customer':  # Assuming `role` is a field in your User model
+    if request.user.role != 'customer' and not request.user.is_superuser:  # Assuming `role` is a field in your User model
         return HttpResponseForbidden("You are not authorized to book services. Please contact support.")
 
     if request.method == 'POST':
