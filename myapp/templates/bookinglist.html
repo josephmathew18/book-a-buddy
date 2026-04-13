@@ -1,0 +1,170 @@
+{% extends 'base.html' %} 
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 80%;
+            margin: 50px auto;
+            background: #826B10;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .a1:hover {
+            background-color: #826B10; /* Darker blue on hover */
+            color: #ffffff; /* Ensure text stays white */
+        }
+        .btn:hover {
+            background-color: #826B10;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+            background: white;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .a1 {
+            padding: 8px 15px;
+            background-color: black;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .a1:hover {
+            background-color: #826B10;
+        }
+        .paid {
+            color: green;
+            font-weight: bold;
+        }
+        .not-paid {
+            color: red;
+            font-weight: bold;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            text-decoration:dashed;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .btn {
+            width: 100%;
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #826B10;
+        }
+        p {
+            text-align: center;
+            margin-top: 15px;
+        }
+        a {
+            color: white;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>My Bookings</h2>
+        <table>
+            <tr>
+                <th>Booking ID</th>
+                <th>Service</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Status</th>
+                <th>Total Cost</th>
+                <th>Tracking Code</th>
+                <th>Payment Status</th>
+                <th>Actions</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{% if booking.driver %} Driver: {{ booking.driver }} {% else %} Labour: {{ booking.labour }} {% endif %}</td>
+                <td>{{ booking.start_time }}</td>
+                <td>{{ booking.end_time }}</td>
+                <td>{{ booking.status }}</td>
+                <td>${{ booking.total_cost }}</td>
+                <td>{{ booking.tracking_code }}</td>
+                <td>
+                    {% if booking.is_paid %}
+                        <span class="paid">Paid</span>
+                    {% else %}
+                        <span class="not-paid">Not Paid</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'submit_review' booking.id %}" class="a1">Rate</a>
+                    {% if not booking.is_paid %}
+                        <a href="{% url 'payment' booking.id %}" class="a1">Pay</a>
+                    {% endif %}
+                    <a href="{% url 'create_complaint' booking.id %}" class="a1">Complain</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'bookservice' %}" class="a1">Create New Booking</a>
+    </div>
+</body>
+</html>
+{% endblock %}

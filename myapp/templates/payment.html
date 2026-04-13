@@ -1,0 +1,187 @@
+<DOCTYPE html>
+    <html>
+      <style>
+            .username {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+      </style>
+      
+        
+       
+        <body>
+    
+        <div class="container">
+    
+               
+            <div class="container">
+                <a href="{% url 'home' %}" class="a1" >Home</a><br>
+                <h2>Payment Gateway</h2>
+                <form method="POST" action="{% url 'process_payment' booking.id %}">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <th>Booking ID</th>
+                            <td>{{ booking.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Service</th>
+                            <td>{% if booking.driver %} Driver: {{ booking.driver }} {% else %} Labour: {{ booking.labour }} {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Total Cost</th>
+                            <td>${{ booking.total_cost }}</td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        <label for="card_number">Card Number</label>
+                        <input type="text" id="card_number" name="card_number" placeholder="Enter your card number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expiry_date">Expiry Date</label>
+                        <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="number" id="cvv" name="cvv" placeholder="123" required>
+                    </div>
+                    <button type="submit" class="btn">Pay Now</button>
+                </form>
+                
+           
+              
+            </div>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #826B10;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+        }
+
+        .form-group {
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: white;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .success-message {
+            color: green;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+    
+        th, td {
+            padding: 12px;
+            border:none;
+        }
+    
+        th {
+            background-color: #826B10;
+        }
+    
+        tr:nth-child(even) {
+            background-color:#826B10;
+        }
+    
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .a1 {
+            padding: 10px 20px;
+            background-color: black; /* Primary blue color */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none; /* Remove underline */
+            display:inline-block;
+            margin: 5px; /* Add spacing between buttons */
+            text-align: center;
+            justify-content: right;
+            
+        }
+    
+        .a1:hover {
+            background-color: #826B10; /* Darker blue on hover */
+            color: #ffffff; /* Ensure text stays white */
+        }
+    
+        .a1:active {
+            background-color: #003d80; /* Even darker when active */
+        }
+        
+    </style>
+        
+    
+      <script src="js/jquery-3.4.1.min.js"></script>
+      <script src="js/bootstrap.js"></script>
+      <script src="js/custom.js"></script>
+    </body>
+    
+    </html>

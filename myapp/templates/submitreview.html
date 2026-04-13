@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="static/images/favicon.png" type="image/x-icon">
+
+  <title>dlconnect</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="static/css/responsive.css" rel="stylesheet" />
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css"> <!-- Link to your custom CSS -->
+</head>
+<body>
+  <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  </head>
+    <div class="hero_area">
+    <!-- header section strats -->
+    <div class="hero_bg_box">
+      <div class="img-box">
+        <img src="static/images/labour.jpg" alt="">
+      </div>
+    </div>
+
+    <div class="container">
+      <a href="{% url 'home' %}" class="a1" >Home</a><br>
+        <h2>Rate</h2>
+    <form method="post">
+      {% csrf_token %}
+   
+      <div class="star-rating">
+        <i class="fa fa-star" data-value="1"></i>
+        <i class="fa fa-star" data-value="2"></i>
+        <i class="fa fa-star" data-value="3"></i>
+        <i class="fa fa-star" data-value="4"></i>
+        <i class="fa fa-star" data-value="5"></i>
+    </div>
+    <input type="hidden" name="rating" id="ratingInput">
+
+    <label for="sp">Service Provider</label>
+    <input type="text" id="serviceprovider" name="serviceprovider" required>
+     <br><br>
+
+    <label for="comment">Feedback</label>
+    <input type="text" id="comment" name="comment" required>
+     <br><br>
+
+    <button type="submit" class="btn">Submit</button>
+      
+    </form>
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #826B10;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .btn {
+            width: 100%;
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #826B10;
+        }
+        p {
+            text-align: center;
+            margin-top: 15px;
+        }
+        a {
+            color: white;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .star-rating i {
+            font-size: 2rem;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .star-rating i.selected,
+        .star-rating i:hover,
+        .star-rating i:hover ~ i {
+            color: #f5c518;
+        }
+        .a1 {
+            padding: 10px 20px;
+            background-color: black; /* Primary blue color */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none; /* Remove underline */
+            display:inline-block;
+            margin: 5px; /* Add spacing between buttons */
+            text-align: center;
+            justify-content: right;
+            
+        }
+    
+        .a1:hover {
+            background-color: #826B10; /* Darker blue on hover */
+            color: #ffffff; /* Ensure text stays white */
+        }
+    
+        .a1:active {
+            background-color: #003d80; /* Even darker when active */
+        }
+    </style>
+  
+     <script src="js/jquery-3.4.1.min.js"></script>
+     <script src="js/bootstrap.js"></script>
+     <script src="js/custom.js"></script>
+     <script>
+      // JavaScript to handle star click and form submission
+      const stars = document.querySelectorAll('.star-rating i');
+      const ratingInput = document.getElementById('ratingInput');
+
+      stars.forEach((star) => {
+          star.addEventListener('click', () => {
+              const rating = star.getAttribute('data-value');
+              ratingInput.value = rating;
+
+              // Highlight the selected stars
+              stars.forEach((s) => s.classList.remove('selected'));
+              star.classList.add('selected');
+              let previousSibling = star.previousElementSibling;
+              while (previousSibling) {
+                  previousSibling.classList.add('selected');
+                  previousSibling = previousSibling.previousElementSibling;
+              }
+          });
+      });
+  </script>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script src="js/bootstrap.js"></script>
+   <script src="js/custom.js"></script>
+</body>
+</html>
+

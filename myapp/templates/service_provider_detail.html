@@ -1,0 +1,178 @@
+<!-- templates/service_provider_list.html -->
+<DOCTYPE html>
+    <html>
+      <style>
+            .username {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+      </style>
+       
+        <body>
+<div class="container">
+    
+    <a href="{% url 'home' %}" class="c1" >Home</a><br>
+    <h2>All Service Providers</h2>
+    <ul>
+        {% for service_provider in service_providers %}
+            <li>
+                <a href="{% url 'list_service_provider' service_provider.id %}">
+                    {{ service_provider.company_name }}
+                </a>
+            </li>
+        {% empty %}
+            <p>No service providers available.</p>
+        {% endfor %}
+    </ul>
+</div>
+<style>
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    .c1{
+        display: flex;
+        justify-content: space-between; /* Aligns elements to both ends of the container */
+        align-items: center; /* Centers items vertically */
+        padding: 20px;
+        float: right;
+        background-color: black; /* Primary blue color */
+        color: #fff; 
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px
+    }
+    .container {
+        
+        max-width: 500px;
+        margin: 50px auto;
+        background: #826B10;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        text-decoration:dashed;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .btn:hover {
+        background-color: white;
+    }
+    p {
+        text-align: center;
+        margin-top: 15px;
+    }
+    a {
+        color: black;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    th, td {
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f4f4f4;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        background-color: black;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background-color: #826B10;
+    }
+
+    .container {
+        margin: 30px auto;
+        max-width: 80%;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
+<style>
+    .a1 {
+        padding: 10px 20px;
+        background-color: black; /* Primary blue color */
+        color: #fff; /* White text */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none; /* Remove underline */
+        display: inline-block;
+        margin: 5px; /* Add spacing between buttons */
+        text-align: center;
+    }
+
+    .a1:hover {
+        background-color: #826B10; /* Darker blue on hover */
+        color: #ffffff; /* Ensure text stays white */
+    }
+
+    .a1:active {
+        background-color: #003d80; /* Even darker when active */
+    }
+</style>
+
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/custom.js"></script>
+</body>
+
+</html>

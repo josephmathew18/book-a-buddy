@@ -1,0 +1,118 @@
+{%extends 'base.html'%} {%block content%}
+<!DOCTYPE html>
+<html>
+  <style>
+        .username {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+  </style>
+  
+    
+    <p style="color:white" class="username">Welcome {{ request.user.username }} ({{ request.user.role }})</p>
+    
+
+    <div class="container">
+        <h2>Add Labours</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    
+        <label for="aadhar">Aadhar:</label>
+        <input type="text" id="aadhar" name="aadhar" required>
+    
+        <label for="img">Image:</label>
+        <input type="file" id="img" name="img">
+    
+        <label for="exp">Experience:</label>
+        <input type="number" id="exp" name="exp" required>
+    
+        <label for="skills">Skills:</label>
+        <input type="text" id="skills" name="skills" required>
+    
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+    
+        <label for="phno">Phone Number:</label>
+        <input type="text" id="phno" name="phno" required>
+    
+        <label for="availability">Available:</label>
+        <input type="checkbox" id="availability" name="availability">
+    
+        <label for="rate_per_hour">Rate Per Hour:</label>
+        <input type="text" id="rate_per_hour" name="rate_per_hour" required>
+        <br><br>
+        <button type="submit" class="btn">Add Labour</button>
+    </form><br></div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #826B10;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            text-decoration:dashed;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .btn {
+            width: 100%;
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #826B10;
+        }
+        p {
+            text-align: center;
+            margin-top: 15px;
+        }
+        a {
+            color: white;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+
+</html>
+{%endblock%}

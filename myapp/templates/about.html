@@ -1,0 +1,379 @@
+{%extends 'base.html'%} {%block content%}
+<!DOCTYPE html>
+<html>
+  <style>
+        .username {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+  </style>
+  
+    
+    <p style="color:white" class="username">Welcome {{ request.user.username }} ({{ request.user.role }})</p>
+    
+
+    <!-- slider section -->
+    <section class=" slider_section ">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-7">
+                  <div class="detail-box">
+                    <h3>
+                      Hire a Labourer <br>
+                      <span>
+                        Find skilled labourers for your tasks
+                      </span>
+                    </h3>
+                    <p>
+                     
+                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn-1"> Book Labour </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-7">
+                  <div class="detail-box">
+                    <h1>
+                      Hire a Driver<br>
+                      <span>
+                        Get professional drivers for your needs
+                      </span>
+                    </h1>
+                    <p>
+  
+                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn-1">Book Driver</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container idicator_container">
+          <ol class="carousel-indicators">
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 px-0">
+          <div class="img_container">
+            <div class="img-box">
+              <img src="static/images/bookdriver.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 px-0">
+          <div class="detail-box">
+            <div class="heading_container ">
+              <h2>
+                Who Are We?
+              </h2>
+            </div>
+            <p>
+              Provide a seamless interface for customers to book on-call drivers and labours.
+              Offer real-time availability of workers based on location and preferences.
+              Facilitate easy payment processing and service tracking.
+              Ensure transparency in pricing and service reviews.
+              Support both mobile and web access for a wider user base.
+            </p>
+            <div class="btn-box">
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  
+  <div class="about-us-container">
+    <div class="hero-section">
+        <p>Your trusted platform for booking skilled drivers and laborers on demand.</p>
+    </div>
+
+    <div class="mission-section">
+        <h2>Our Mission</h2>
+        <p>
+            We aim to connect users with reliable and professional service providers, 
+            ensuring seamless booking experiences. Whether you need a driver or a laborer,
+            we make it simple and efficient to find the right person for the job.
+        </p>
+    </div>
+
+    <div class="how-it-works-section">
+        <h2>How It Works</h2>
+        <ol>
+            <li>Browse our skilled drivers and laborers by category or expertise.</li>
+            <li>Compare profiles, ratings, and reviews to choose the best match.</li>
+            <li>Book the service you need at your convenience with upfront pricing.</li>
+            <li>Track your bookings in real-time with live updates and notifications.</li>
+            <li>Rate and review your experience to help others make informed decisions.</li>
+        </ol>
+        <p>
+          Our platform ensures reliability, transparency, and quality in every booking. 
+          Whether it's for a one-time task or a recurring need, we've got you covered.
+      </p>
+      <p>
+          Additionally, we offer flexible payment options and 24/7 customer support to assist with any queries or issues. Our commitment to excellence drives us to continually improve and enhance your experience.
+      </p>
+      <p>
+          Service providers can also benefit from our platform by gaining visibility, managing their schedules efficiently, and accessing real-time feedback to grow their business.
+      </p>
+      <p>
+        At DL Connect, we believe in creating opportunities for everyone involved. Users gain access to a pool of reliable professionals, while service providers find a robust platform to showcase their skills and earn more.
+    </p>
+    <p>
+        Whether you need someone to help with a quick task or require ongoing assistance, our platform is designed to cater to your needs. We continuously work to expand our network and add more features that make life easier for our users.
+    </p>
+    <p>
+        Join us on this journey to redefine how services are booked and delivered. Experience the convenience and quality that thousands of users trust every day. With [Platform Name], your satisfaction is our priority.
+    </p>
+    </div>
+
+    <section>
+        <h2>Meet the Team</h2>
+        <div class="team">
+            <div class="team-member">
+                <img src="static\images\t2.jpg" alt="John Doe">
+                <h3>John Doe</h3>
+                <p>Founder & CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="static\images\t3.png" alt="Jane Smith">
+                <h3>Jane Smith</h3>
+                <p>Head of Operations</p>
+            </div>
+            <div class="team-member">
+                <img src="static\images\t4.jpg" alt="Alice Johnson">
+                <h3>Alice Johnson</h3>
+                <p>Chief Technology Officer</p>
+            </div>
+        </div>
+    </section>
+  </div>
+</div>
+
+<ul>
+  {% for review in reviews %}
+      <li style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+          <strong>User:</strong> {{ review.user.username }}<br>
+          <strong>Service Provider:</strong> <em>{{ review.serviceprovider }}</em><br>
+          <strong>Rating:</strong> <span style="color: gold;">{{ review.rating }} ★</span><br>
+          <strong>Feedback:</strong> <em>{{ review.feedback }}</em><br>
+        
+      </li>
+  {% empty %}
+      <p>No reviews available yet.</p>
+  {% endfor %}
+</ul>
+  
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_logo">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                DL Connect
+              </span>
+            </a>
+            <p>
+              Provide a seamless interface for customers to book on-call drivers and labours. 
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_links">
+            <h5>
+              Services
+            </h5>
+            <ul>
+              <li>
+                <a href="">
+                 Book On Call Drivers
+                </a>
+              </li>
+              <li>
+                <a href="">
+                 Book Labours
+                </a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_info">
+            <h5>
+              Contact Us
+            </h5>
+          </div>
+          <div class="info_contact">
+            <a href="" class="">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>
+                Thiruvananthapuram, Kerala
+              </span>
+            </a>
+            <a href="" class="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call : +91 843245664 
+              </span>
+            </a>
+            <a href="" class="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>
+                dlconnect@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_form ">
+            <h5>
+              Newsletter
+            </h5>
+            <form action="#">
+              <input type="email" placeholder="Enter your email">
+              <button>
+                Subscribe
+              </button>
+            </form>
+            <div class="social_box">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-youtube" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+  <style>
+   
+  
+   a {
+            color: white;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+      
+    .about-us-container {
+        padding: 2rem;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+    .hero-section {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .hero-section h1 {
+        font-size: 2.5rem;
+        color: #333;
+    }
+    .hero-section p {
+        font-size: 1.2rem;
+        color: #666;
+    }
+    .mission-section, .how-it-works-section, .contact-section {
+        margin-bottom: 2rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+        color: #444;
+        margin-bottom: 0.5rem;
+    }
+    p, ol {
+        color: #555;
+    }
+    ol {
+        padding-left: 1.5rem;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .team {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .team-member {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            width: calc(33.333% - 40px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+</style>
+
+
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+
+</html>
+{%endblock%}
