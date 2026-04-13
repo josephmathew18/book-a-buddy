@@ -1,4 +1,5 @@
-{%extends 'base.html'%} {%block content%}
+{%extends 'base.html'%}
+{% load static %} {%block content%}
 <!DOCTYPE html>
 <html>
   <style>
@@ -21,7 +22,7 @@
   <section class="contact_section layout_padding">
     <div class="contact_bg_box">
         <div class="img-box">
-            <img src="static/images/contact-bg.jpg"  alt="">
+            <img src="{% static \'images/contact-bg.jpg\' %}"  alt="">
         </div>
     </div>
     <div class="container">
