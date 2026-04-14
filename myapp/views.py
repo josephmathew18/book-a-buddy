@@ -29,7 +29,7 @@ def add_labr(request):
             service_provider = ServiceProvider.objects.get(user=request.user)
         except ServiceProvider.DoesNotExist:
             return render(request, 'add_labours.html', {
-                'error': "You must be logged in as a Service Provider to add a Labour."
+                'error': "You must configure your Service Provider Company Details first before adding labours."
             })
 
         # Create the Labour instance with form data
@@ -60,7 +60,7 @@ def add_driver(request):
             service_provider = ServiceProvider.objects.get(user=request.user)
         except ServiceProvider.DoesNotExist:
             return render(request, 'add_drivers.html', {
-                'error': "You must be logged in as a Service Provider to add a Labour."
+                'error': "You must configure your Service Provider Company Details first before adding drivers."
             })
 
         # Create the Driver instance with form data
