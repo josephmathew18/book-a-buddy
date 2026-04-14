@@ -1,179 +1,57 @@
-{%extends 'base.html'%}
-{% load static %} {%block content%}
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
 <style>
+  /* REMOVE OLD BROKEN CONTAINER STYLE */
+
+  /* USERNAME */
   .username {
     position: absolute;
     top: 10px;
     left: 10px;
     font-size: 18px;
     font-weight: bold;
+    color: white;
   }
 
-  .container {
-    width: 90%;
-    max-width: 400px;
+  /* FIX FORM WIDTH */
+  .contact_section .container {
+    max-width: 900px;
+    /* ✅ wider form */
     margin: auto;
   }
 
-  input,
-  button {
+  /* FORM INPUTS */
+  .contact_form-container input,
+  .contact_form-container textarea {
     width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
   }
 
-  @media (max-width: 600px) {
-    .container {
-      padding: 15px;
-    }
+  /* BUTTON */
+  .contact_form-container button {
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
   }
-</style>
 
+  .contact_form-container button:hover {
+    background: #826B10;
+  }
 
-<p style="color:white" class="username">Welcome {{ request.user.username }} ({{ request.user.role }})</p>
+  /* SECTION SPACING */
+  .contact_section {
+    padding: 60px 0;
+  }
 
-
-
-
-
-<section class="contact_section layout_padding">
-  <div class="contact_bg_box">
-    <div class="img-box">
-      <img src="{% static 'images/contact-bg.jpg' %}" alt="">
-    </div>
-  </div>
-  <div class="container">
-    <div class="heading_container heading_center">
-      <h2>
-        Get In touch
-      </h2>
-    </div>
-    <div class="row">
-      <div class="col-md-7 mx-auto">
-        <form method="post" action="">
-          {% csrf_token %}
-          <div class="contact_form-container">
-            {{ form.as_p }}
-            <div class="btn-box">
-              <button type="submit">
-                Send
-              </button>
-            </div>
-          </div>
-        </form>
-        {% if messages %}
-        <ul class="messages">
-          {% for message in messages %}
-          <li class="{{ message.tags }}">{{ message }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- info section -->
-<section class="info_section ">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="info_logo">
-          <a class="navbar-brand" href="index.html">
-            <span>
-              DL Connect
-            </span>
-          </a>
-          <p>
-            Provide a seamless interface for customers to book on-call drivers and labours.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="info_links">
-          <h5>
-            Services
-          </h5>
-          <ul>
-            <li>
-              <a href="">
-                Book On Call Drivers
-              </a>
-            </li>
-            <li>
-              <a href="">
-                Book Labours
-              </a>
-            </li>
-
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="info_info">
-          <h5>
-            Contact Us
-          </h5>
-        </div>
-        <div class="info_contact">
-          <a href="" class="">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <span>
-              Thiruvananthapuram, Kerala
-            </span>
-          </a>
-          <a href="" class="">
-            <i class="fa fa-phone" aria-hidden="true"></i>
-            <span>
-              Call : +91 843245664
-            </span>
-          </a>
-          <a href="" class="">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-            <span>
-              dlconnect@gmail.com
-            </span>
-          </a>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="info_form ">
-          <h5>
-            Newsletter
-          </h5>
-          <form action="#">
-            <input type="email" placeholder="Enter your email">
-            <button>
-              Subscribe
-            </button>
-          </form>
-          <div class="social_box">
-            <a href="">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-youtube" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-instagram" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- end info_section -->
-<style>
+  /* LINKS */
   a {
     color: white;
   }
@@ -182,19 +60,95 @@
     text-decoration: underline;
   }
 
-  .message_input {
-    height: 100px;
-    width: 100%;
-    resize: none;
+  /* MESSAGE BOX */
+  textarea {
+    height: 120px;
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .contact_section .container {
+      padding: 15px;
+    }
   }
 </style>
 
+<p class="username">
+  Welcome {{ request.user.username }} ({{ request.user.role }})
+</p>
 
+<!-- CONTACT SECTION -->
+<section class="contact_section layout_padding">
+  <div class="contact_bg_box">
+    <div class="img-box">
+      <img src="{% static 'images/contact-bg.jpg' %}" alt="">
+    </div>
+  </div>
 
-<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.js' %}"></script>
-<script src="{% static 'js/custom.js' %}"></script>
-</body>
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>Get In Touch</h2>
+    </div>
 
-</html>
-{%endblock%}
+    <div class="row">
+      <div class="col-md-8 mx-auto"> <!-- ✅ FIXED WIDTH -->
+
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="contact_form-container">
+            {{ form.as_p }}
+
+            <div class="btn-box">
+              <button type="submit">Send</button>
+            </div>
+          </div>
+        </form>
+
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO SECTION -->
+<section class="info_section">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3">
+        <h5>DL Connect</h5>
+        <p>Book drivers and labours easily.</p>
+      </div>
+
+      <div class="col-md-3">
+        <h5>Services</h5>
+        <p>Drivers</p>
+        <p>Labours</p>
+      </div>
+
+      <div class="col-md-3">
+        <h5>Contact</h5>
+        <p>Kerala</p>
+        <p>+91 843245664</p>
+        <p>dlconnect@gmail.com</p>
+      </div>
+
+      <div class="col-md-3">
+        <h5>Newsletter</h5>
+        <input type="email" placeholder="Enter email">
+        <button>Subscribe</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,192 +1,115 @@
 {% load static %}
-<!-- templates/service_provider_list.html -->
-<DOCTYPE html>
-    <html>
-      <head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-      <style>
-            .username {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                font-size: 18px;
-                font-weight: bold;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Providers</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #f4f4f4;
+        }
+
+        /* MAIN CONTAINER */
+        .main-container {
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        /* CARD */
+        .card-box {
+            background: #826B10;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* HEADER */
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* BUTTON */
+        .home-btn {
+            background: black;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .home-btn:hover {
+            background: #444;
+        }
+
+        /* LIST */
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        a {
+            color: black;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            .main-container {
+                margin: 20px;
             }
-      </style>
-       
-        <body>
-<div class="container">
-    
-    <a href="{% url 'home' %}" class="c1" >Home</a><br>
-    <h2>All Service Providers</h2>
-    <ul>
-        {% for service_provider in service_providers %}
-            <li>
-                <a href="{% url 'list_service_provider' service_provider.id %}">
-                    {{ service_provider.company_name }}
-                </a>
-            </li>
-        {% empty %}
-            <p>No service providers available.</p>
-        {% endfor %}
-    </ul>
-</div>
-<style>
-    
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-    .c1{
-        display: flex;
-        justify-content: space-between; /* Aligns elements to both ends of the container */
-        align-items: center; /* Centers items vertically */
-        padding: 20px;
-        float: right;
-        background-color: black; /* Primary blue color */
-        color: #fff; 
-        text-decoration: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px
-    }
-    .container {
-        
-        max-width: 500px;
-        margin: 50px auto;
-        background: #826B10;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-        text-decoration:dashed;
-    }
-    .form-group {
-        margin-bottom: 15px;
-    }
-    
-    .btn {
-        width: 100%;
-        background-color: black;
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .btn:hover {
-        background-color: white;
-    }
-    p {
-        text-align: center;
-        margin-top: 15px;
-    }
-    a {
-        color: black;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-</style>
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        font-size: 18px;
-        text-align: left;
-    }
+        }
+    </style>
+</head>
 
-    th, td {
-        padding: 12px;
-        border: 1px solid #ddd;
-    }
+<body>
 
-    th {
-        background-color: #f4f4f4;
-    }
+    <div class="main-container">
 
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
+        <div class="card-box">
 
-    tr:hover {
-        background-color: #f1f1f1;
-    }
-    
-    .btn {
-        padding: 10px 20px;
-        background-color: black;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        text-decoration: none;
-        display: inline-block;
-    }
+            <div class="header-row">
+                <h2>All Service Providers</h2>
+                <a href="{% url 'home' %}" class="home-btn">Home</a>
+            </div>
 
-    .btn:hover {
-        background-color: #826B10;
-    }
+            <ul>
+                {% for service_provider in service_providers %}
+                <li>
+                    <a href="{% url 'list_service_provider' service_provider.id %}">
+                        {{ service_provider.company_name }}
+                    </a>
+                </li>
+                {% empty %}
+                <p>No service providers available.</p>
+                {% endfor %}
+            </ul>
 
-.container {
-    width: 90%;
-    max-width: 400px;
-    margin: auto;
-}
+        </div>
 
-  input,
-  button {
-    width: 100%;
-  }
+    </div>
 
-  @media (max-width: 600px) {
-    .container {
-      padding: 15px;
-    }
-  }
-
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-</style>
-<style>
-    .a1 {
-        padding: 10px 20px;
-        background-color: black; /* Primary blue color */
-        color: #fff; /* White text */
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        text-decoration: none; /* Remove underline */
-        display: inline-block;
-        margin: 5px; /* Add spacing between buttons */
-        text-align: center;
-    }
-
-    .a1:hover {
-        background-color: #826B10; /* Darker blue on hover */
-        color: #ffffff; /* Ensure text stays white */
-    }
-
-    .a1:active {
-        background-color: #003d80; /* Even darker when active */
-    }
-</style>
-
-
-<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.js' %}"></script>
-<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 </html>
