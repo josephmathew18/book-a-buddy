@@ -45,10 +45,7 @@
         {{ form.as_p }} <!-- Display form fields -->
         <button type="submit" class="btn">Submit Complaint</button>
     </form>
-    {% for booking in bookings %}
-    <a href="{% url 'complaint_list'  booking.id%}">Back to Complaints</a>
-
-    {% endfor %}
+    <a href="{% url 'complaint_list' %}">Back to Complaints</a>
 
 </div>
 <style>
