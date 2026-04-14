@@ -102,12 +102,20 @@ def create_complaint(request, booking_id):
 
 # ---------------- SERVICE PROVIDERS ----------------
 @login_required
-def service_provider_list(request):
-    providers = Driver.objects.all() | Labour.objects.all()
-    return render(request, 'service_provider_list.html', {
-        'service_providers': providers
-    })
+def service_provider_bookings(request):
+    try:
+        # ✅ FIX: filter correctly
+        bookings = Booking.objects.filter(
+            driver=request.user
+        ) | Booking.objects.filter(
+            labour=request.user
+        )
+    except Exception:
+        bookings = []
 
+    return render(request, 'service_provider_bookings.html', {
+        'bookings': bookings
+    })
 
 # ---------------- CONTACT ----------------
 def contact(request):
