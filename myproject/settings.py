@@ -4,17 +4,28 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY
-SECRET_KEY = 'django-insecure-d+t^0#p3bgwi^nt+@^s7+oa+-vqwh+78$i(tfnl7@eu&nzd2v-'
+SECRET_KEY = 'q3bgwi^nt+@^s7+oa+-vqwh+78$i(tfnl7@eu&nzd2v-abcde12345'
 
 DEBUG = False  # ✅ IMPORTANT (production)
 
 ALLOWED_HOSTS = [
-    "book-a-buddy.onrender.com"
+    "book-a-buddy.onrender.com",
+    "localhost",
+    "127.0.0.1"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://book-a-buddy.onrender.com"
 ]
+
+# Security Settings for Production
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # APPLICATIONS
 INSTALLED_APPS = [
