@@ -114,30 +114,50 @@
 
     <div class="container">
       <h2>Login</h2>
- <form method="POST">
-    {% csrf_token %}  
+      <form method="POST">
+        {% csrf_token %}
 
-    <input type="text" name="username">
-    <input type="password" name="password">
+        <input type="text" name="username">
+        <input type="password" name="password">
 
-    <button type="submit">Login</button>
-</form>
+        <button type="submit">Login</button>
+      </form>
       <p>Don't have an account? <a href="{% url 'reg' %}">Register here</a>.</p>
     </div>
 
     <style>
       /* Add your custom CSS styles here */
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
         margin: 0;
-        padding: 0;
+        font-family: "Poppins", sans-serif;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 100vh;
+        /* full screen height */
       }
 
       .container {
-        width: 90%;
-        max-width: 400px;
-        margin: auto;
+        width: 100%;
+        max-width: 450px;
+        /* ✅ perfect size */
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+
+        border: 1px solid #ccc;
+        border-radius: 5px;
       }
 
       input,
@@ -165,20 +185,13 @@
         margin-bottom: 5px;
       }
 
-      input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-
       .btn {
         width: 100%;
-        padding: 10px;
-        background-color: black;
+        padding: 12px;
+        background: black;
         color: white;
         border: none;
-        border-radius: 4px;
+        border-radius: 5px;
         cursor: pointer;
       }
 
