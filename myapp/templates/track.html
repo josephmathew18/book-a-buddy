@@ -2,108 +2,124 @@
 {% load static %} {%block content%}
 <!DOCTYPE html>
 <html>
-  <style>
-        .username {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-  </style>
-  
-    
-    <p style="color:white" class="username">Welcome {{ request.user.username }} ({{ request.user.role }})</p>
-    
 
-    <div class="container">
-        <h2>Track Booking Status</h2>
-        <!-- Tracking Form -->
-        <form method="post" action="{% url 'track' %}">
-            {% csrf_token %}
-            <label for="tracking_code">Enter Tracking Code:</label>
-            <input type="text" id="tracking_code" name="tracking_code" required>
-            <br><br>
-            <button type="submit" class="btn">Track</button>
-        </form>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    .username {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
 
-        <!-- Error Message -->
-        {% if error_message %}
-            <p style="color: red;">{{ error_message }}</p>
-        {% endif %}
 
-        <!-- Booking Status -->
-        {% if status %}
-            <p><strong>Booking Status:</strong> {{ status }}</p>
-        {% endif %}
+<p style="color:white" class="username">Welcome {{ request.user.username }} ({{ request.user.role }})</p>
 
-        
-        
-    </form><br></div>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            background: #826B10;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            text-decoration:dashed;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .btn {
-            width: 100%;
-            background-color: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: #826B10;
-        }
-        p {
-            text-align: center;
-            margin-top: 15px;
-        }
-        a {
-            color: white;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
 
-  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
+<div class="container">
+    <h2>Track Booking Status</h2>
+    <!-- Tracking Form -->
+    <form method="post" action="{% url 'track' %}">
+        {% csrf_token %}
+        <label for="tracking_code">Enter Tracking Code:</label>
+        <input type="text" id="tracking_code" name="tracking_code" required>
+        <br><br>
+        <button type="submit" class="btn">Track</button>
+    </form>
+
+    <!-- Error Message -->
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    <!-- Booking Status -->
+    {% if status %}
+    <p><strong>Booking Status:</strong> {{ status }}</p>
+    {% endif %}
+
+
+
+    </form><br>
+</div>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: #826B10;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        text-decoration: dashed;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        width: 100%;
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .btn:hover {
+        background-color: #826B10;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    a {
+        color: white;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 </html>
