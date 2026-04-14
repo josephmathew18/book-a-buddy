@@ -1,8 +1,11 @@
 {% load static %}
 <DOCTYPE html>
-<html>
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-  <style>
+    <html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
         .username {
             position: absolute;
             top: 10px;
@@ -10,217 +13,246 @@
             font-size: 18px;
             font-weight: bold;
         }
-  </style>
-  
-    
-   
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
+
+
+
     <body>
 
-    <div class="container">
-        <a href="{% url 'home' %}" class="c1" >Home</a><br>
+        <div class="container">
+            <a href="{% url 'home' %}" class="c1">Home</a><br>
 
-        <h2>Update Order Status</h2>
-           
-        <table>
-            <tr>
-                <th>Booking ID</th>
-                <th>Service</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Status</th>
-                <th>Update Status</th>
-                <th>Total Cost</th>
-                <th>Tracking Code</th>
-            </tr>
-            
-            {% for booking in bookings %}
-            <tr>
-                <td>{{ booking.id }}</td>
-                <td>{% if booking.driver %} Driver: {{ booking.driver }} {% else %} Labour: {{ booking.labour }} {% endif %}</td>
-                <td>{{ booking.start_time }}</td>
-                <td>{{ booking.end_time }}</td>
-                <td>{{ booking.status }}</td>
-                <td>
-                    {% if booking.status == 'pending' %}
-                        <form method="POST" action="{% url 'update_order_status' booking.id %}" style="display: inline;">
+            <h2>Update Order Status</h2>
+
+            <table>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Service</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Status</th>
+                    <th>Update Status</th>
+                    <th>Total Cost</th>
+                    <th>Tracking Code</th>
+                </tr>
+
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.id }}</td>
+                    <td>{% if booking.driver %} Driver: {{ booking.driver }} {% else %} Labour: {{ booking.labour }} {%
+                        endif %}</td>
+                    <td>{{ booking.start_time }}</td>
+                    <td>{{ booking.end_time }}</td>
+                    <td>{{ booking.status }}</td>
+                    <td>
+                        {% if booking.status == 'pending' %}
+                        <form method="POST" action="{% url 'update_order_status' booking.id %}"
+                            style="display: inline;">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="accept">
                             <button type="submit">Accept</button>
                         </form>
-                        <form method="POST" action="{% url 'update_order_status' booking.id %}" style="display: inline;">
+                        <form method="POST" action="{% url 'update_order_status' booking.id %}"
+                            style="display: inline;">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="decline">
                             <button type="submit">Decline</button>
                         </form>
-                    {% elif booking.status == 'accepted' %}
-                        <form method="POST" action="{% url 'update_order_status' booking.id %}" style="display: inline;">
+                        {% elif booking.status == 'accepted' %}
+                        <form method="POST" action="{% url 'update_order_status' booking.id %}"
+                            style="display: inline;">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="complete">
                             <button type="submit">Complete</button>
                         </form>
-                    {% else %}
+                        {% else %}
                         {{ booking.status|capfirst }}
-                    {% endif %}
-                </td>
-                <td>${{ booking.total_cost }}</td>
-                <td>{{ booking.tracking_code }}</td>
-            </tr>
-            {% endfor %}
-            
-        </table>
-            
-       
-          
+                        {% endif %}
+                    </td>
+                    <td>${{ booking.total_cost }}</td>
+                    <td>{{ booking.tracking_code }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+
+
         </div>
-</div>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            background: #826B10;
-            padding: 20px;
-            border-radius: 8px;
-            justify-content: center;
-            align-items: center; 
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            text-decoration:dashed;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .btn {
-            width: 100%;
-            background-color: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: white;
-        }
-        p {
-            text-align: center;
-            margin-top: 15px;
-        }
-        a {
-            color: white;
-            
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 18px;
-            text-align: left;
-        }
-    
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-        }
-    
-        th {
-            background-color: #f4f4f4;
-        }
-    
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-    
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            background-color: black;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .c1{
-        display: flex;
-        justify-content: space-between; /* Aligns elements to both ends of the container */
-        align-items: center; /* Centers items vertically */
-        padding: 20px;
-        float: right;
-        background-color: black; /* Primary blue color */
-        color: #fff; 
-        text-decoration: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px
-    }
-    
-        .btn:hover {
-            background-color: #826B10;
-        }
-    
-        .container {
-            margin: 30px auto;
-            max-width: 80%;
-        }
-    
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-    </style>
-    <style>
-        .a1 {
-            padding: 10px 20px;
-            background-color: black; /* Primary blue color */
-            color: #fff; /* White text */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: none; /* Remove underline */
-            display:inline-block;
-            margin: 5px; /* Add spacing between buttons */
-            text-align: center;
-            justify-content: right;
-            
-        }
-    
-        .a1:hover {
-            background-color: #826B10; /* Darker blue on hover */
-            color: #ffffff; /* Ensure text stays white */
-        }
-    
-        .a1:active {
-            background-color: #003d80; /* Even darker when active */
-        }
-    </style>
-    
+        </div>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
 
-  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
-</body>
+            .container {
+                max-width: 500px;
+                margin: 50px auto;
+                background: #826B10;
+                padding: 20px;
+                border-radius: 8px;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
-</html>
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+                text-decoration: dashed;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                background-color: black;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            .btn:hover {
+                background-color: white;
+            }
+
+            p {
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            a {
+                color: white;
+
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 18px;
+                text-align: left;
+            }
+
+            th,
+            td {
+                padding: 12px;
+                border: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #f4f4f4;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                background-color: black;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            .c1 {
+                display: flex;
+                justify-content: space-between;
+                /* Aligns elements to both ends of the container */
+                align-items: center;
+                /* Centers items vertically */
+                padding: 20px;
+                float: right;
+                background-color: black;
+                /* Primary blue color */
+                color: #fff;
+                text-decoration: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px
+            }
+
+            .btn:hover {
+                background-color: #826B10;
+            }
+
+            .container {
+                margin: 30px auto;
+                max-width: 80%;
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        </style>
+        <style>
+            .a1 {
+                padding: 10px 20px;
+                background-color: black;
+                /* Primary blue color */
+                color: #fff;
+                /* White text */
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                text-decoration: none;
+                /* Remove underline */
+                display: inline-block;
+                margin: 5px;
+                /* Add spacing between buttons */
+                text-align: center;
+                justify-content: right;
+
+            }
+
+            .a1:hover {
+                background-color: #826B10;
+                /* Darker blue on hover */
+                color: #ffffff;
+                /* Ensure text stays white */
+            }
+
+            .a1:active {
+                background-color: #003d80;
+                /* Even darker when active */
+            }
+        </style>
+
+
+        <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+    </body>
+
+    </html>

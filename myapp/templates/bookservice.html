@@ -2,112 +2,132 @@
 {% load static %} {%block content%}
 <!DOCTYPE html>
 <html>
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-  <style>
-        .username {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-  </style>
-  
-    
-    <p style="color:white" class="username">Welcome {{ request.user.username }} ({{ request.user.role }})</p>
-    
 
-    <div class="container">
-        <h2>Book a Service</h2>
-        <form method="post" >
-            {% csrf_token %}
-            {{ form.as_p }}
-            
-            
-            <br><br>
-            
-            <button type="submit" class="btn" >Book Now</button>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    .username {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 400px;
+        margin: auto;
+    }
+</style>
+
+
+<p style="color:white" class="username">Welcome {{ request.user.username }} ({{ request.user.role }})</p>
+
+
+<div class="container">
+    <h2>Book a Service</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+
+        <br><br>
+
+        <button type="submit" class="btn">Book Now</button>
         </select>
         <br>
-        </form>
-        {% if total_cost is not None %}
-        <h2>Total Cost: ${{ total_cost }}</h2>
+    </form>
+    {% if total_cost is not None %}
+    <h2>Total Cost: ${{ total_cost }}</h2>
     {% endif %}
 
     {% if form.errors %}
     <div class="errors">
         {% for field in form %}
-            {% for error in field.errors %}
-                <p>{{ field.label }}: {{ error }}</p>
-            {% endfor %}
+        {% for error in field.errors %}
+        <p>{{ field.label }}: {{ error }}</p>
+        {% endfor %}
         {% endfor %}
     </div>
-{% endif %}
+    {% endif %}
 </div>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            background: #826B10;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            text-decoration:dashed;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .btn {
-            width: 100%;
-            background-color: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: white;
-        }
-        p {
-            text-align: center;
-            margin-top: 15px;
-        }
-        a {
-            color: white;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
 
-  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: #826B10;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        text-decoration: dashed;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        width: 100%;
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .btn:hover {
+        background-color: white;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    a {
+        color: white;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 </html>

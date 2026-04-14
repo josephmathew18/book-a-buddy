@@ -2,113 +2,137 @@
 
 <!DOCTYPE html>
 <html>
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-  <style>
-        .username {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-  </style>
-  
 
-    
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    .username {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
 
-    <div class="container">
-        <a href="{% url 'home' %}" class="c1" >Home</a><br>
-        <h2>Create Complaint for Booking #{{ booking.id }}</h2>
+    .container {
+        width: 90%;
+        max-width: 400px;
+        margin: auto;
+    }
+</style>
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}  <!-- Display form fields -->
-            <button type="submit" class="btn">Submit Complaint</button>
-        </form>
-        {% for booking in bookings %}
-        <a href="{% url 'complaint_list'  booking.id%}">Back to Complaints</a>
-       
+
+
+
+<div class="container">
+    <a href="{% url 'home' %}" class="c1">Home</a><br>
+    <h2>Create Complaint for Booking #{{ booking.id }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- Display form fields -->
+        <button type="submit" class="btn">Submit Complaint</button>
+    </form>
+    {% for booking in bookings %}
+    <a href="{% url 'complaint_list'  booking.id%}">Back to Complaints</a>
+
     {% endfor %}
-       
+
 </div>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            background: #826B10;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            text-decoration:dashed;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .btn {
-            width: 100%;
-            background-color: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        p {
-            text-align: center;
-            margin-top: 15px;
-        }
-        a {
-            color: white;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .c1{
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: #826B10;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        text-decoration: dashed;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        width: 100%;
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    a {
+        color: white;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .c1 {
         display: flex;
-        justify-content: space-between; /* Aligns elements to both ends of the container */
-        align-items: center; /* Centers items vertically */
+        justify-content: space-between;
+        /* Aligns elements to both ends of the container */
+        align-items: center;
+        /* Centers items vertically */
         padding: 20px;
         float: right;
-        background-color: black; /* Primary blue color */
-        color: #fff; 
+        background-color: black;
+        /* Primary blue color */
+        color: #fff;
         text-decoration: none;
         padding: 10px;
         border-radius: 5px;
         cursor: pointer;
         font-size: 16px
     }
-    </style>
+</style>
 
-  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 </html>

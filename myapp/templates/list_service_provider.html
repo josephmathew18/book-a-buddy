@@ -1,241 +1,264 @@
 {% load static %}
 <DOCTYPE html>
     <html>
-      <head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-      <style>
-            .username {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                font-size: 18px;
-                font-weight: bold;
-            }
-      </style>
-      
-        
-       
-        <body>
-    
-        <div class="container">
-            <a href="{% url 'home' %}" class="c1" >Home</a><br>
-            <h2>Service Provider: {{ service_provider.company_name }}</h2>
-    <p><strong>Contact Info:</strong> {{ service_provider.contact_number }}</p>
-    <p><strong>Address:</strong> {{ service_provider.address }}</p>
 
-    <!-- Drivers Section -->
-    <div class="detail-list">
-        <h2>Drivers</h2>
-        {% if drivers %}
-            <ul>
-                {% for driver in drivers %}
-                
-                        <div>
-
-                            {% if driver.img %}
-    <img src="{{ driver.img.url }}" alt="{{ driver.name }}" height="250px" width="350px">>
-{% else %}
-    <img src="/static/images/default-driver.png" alt="Default Driver Image">
-{% endif %}
-
-
-                        
-                            <div class="info">
-                                <strong>Name:</strong> {{ driver.name }}<br>
-                                <strong>Aadhar:</strong> {{ driver.aadhar }}<br>
-                                <strong>Experience:</strong> {{ driver.exp }} years<br>
-                                <strong>Vehicle:</strong> {{ driver.vehicle }}<br>
-                                <strong>Address:</strong> {{ driver.address }}<br>
-                                <strong>Phone Number:</strong> {{ driver.phno }}<br>
-                                <strong>Availability:</strong> {{ driver.availability|yesno:"Available,Not Available" }}<br>
-                                <strong>Rate per Hour:</strong> ₹{{ driver.rate_per_hour }}<br>
-                            </div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No drivers available.</p>
-        {% endif %}
-    </div>
-
-    <!-- Laborers Section -->
-    <div class="detail-list">
-        <h2>Laborers</h2>
-        {% if laborers %}
-            <ul>
-                {% for laborer in laborers %}
-                    
-                        {% if laborer.img %}
-    <img src="{{ laborer.img.url }}" alt="{{ laborer.name }}" height="250px" width="350px">
-{% else %}
-    <img src="/static/images/default-laborer.png" alt="Default Laborer Image">
-{% endif %}
-                        
-                           
-                            <div class="info">
-                                <strong>Name:</strong> {{ laborer.name }}<br>
-                                <strong>Aadhar:</strong> {{ laborer.aadhar }}<br>
-                                <strong>Experience:</strong> {{ laborer.exp }} years<br>
-                                <strong>Skills:</strong> {{ laborer.skills }}<br>
-                                <strong>Address:</strong> {{ laborer.address }}<br>
-                                <strong>Phone Number:</strong> {{ laborer.phno }}<br>
-                                <strong>Availability:</strong> {{ laborer.availability|yesno:"Available,Not Available" }}<br>
-                                <strong>Rate per Hour:</strong> ₹{{ laborer.rate_per_hour }}<br>
-                            </div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No laborers available.</p>
-        {% endif %}
-    </div>
-
-    <a href="{% url 'service_provider_detail' %}">Back to Service Providers List</a>
-</div>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            background: #826B10;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            text-decoration:dashed;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .btn {
-            width: 100%;
-            background-color: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: white;
-        }
-        p {
-            text-align: center;
-            margin-top: 15px;
-        }
-        a {
-            color: white;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+        .username {
+            position: absolute;
+            top: 10px;
+            left: 10px;
             font-size: 18px;
-            text-align: left;
-        }
-    
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-        }
-    
-        th {
-            background-color: #f4f4f4;
-        }
-    
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-    
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            background-color: black;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .c1{
-        display: flex;
-        justify-content: space-between; /* Aligns elements to both ends of the container */
-        align-items: center; /* Centers items vertically */
-        padding: 20px;
-        float: right;
-        background-color: black; /* Primary blue color */
-        color: #fff; 
-        text-decoration: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px
-    }
-    
-        .btn:hover {
-            background-color: #826B10;
-        }
-    
-        .container {
-            margin: 30px auto;
-            max-width: 80%;
-        }
-    
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
+            font-weight: bold;
         }
     </style>
-    <style>
-        .a1 {
-            padding: 10px 20px;
-            background-color: black; /* Primary blue color */
-            color: #fff; /* White text */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: none; /* Remove underline */
-            display: inline-block;
-            margin: 5px; /* Add spacing between buttons */
-            text-align: center;
-        }
-    
-        .a1:hover {
-            background-color: #826B10; /* Darker blue on hover */
-            color: #ffffff; /* Ensure text stays white */
-        }
-    
-        .a1:active {
-            background-color: #003d80; /* Even darker when active */
-        }
-    </style>
-    
 
-  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
-</body>
 
-</html>
+
+    <body>
+
+        <div class="container">
+            <a href="{% url 'home' %}" class="c1">Home</a><br>
+            <h2>Service Provider: {{ service_provider.company_name }}</h2>
+            <p><strong>Contact Info:</strong> {{ service_provider.contact_number }}</p>
+            <p><strong>Address:</strong> {{ service_provider.address }}</p>
+
+            <!-- Drivers Section -->
+            <div class="detail-list">
+                <h2>Drivers</h2>
+                {% if drivers %}
+                <ul>
+                    {% for driver in drivers %}
+
+                    <div>
+
+                        {% if driver.img %}
+                        <img src="{{ driver.img.url }}" alt="{{ driver.name }}" height="250px" width="350px">>
+                        {% else %}
+                        <img src="/static/images/default-driver.png" alt="Default Driver Image">
+                        {% endif %}
+
+
+
+                        <div class="info">
+                            <strong>Name:</strong> {{ driver.name }}<br>
+                            <strong>Aadhar:</strong> {{ driver.aadhar }}<br>
+                            <strong>Experience:</strong> {{ driver.exp }} years<br>
+                            <strong>Vehicle:</strong> {{ driver.vehicle }}<br>
+                            <strong>Address:</strong> {{ driver.address }}<br>
+                            <strong>Phone Number:</strong> {{ driver.phno }}<br>
+                            <strong>Availability:</strong> {{ driver.availability|yesno:"Available,Not Available" }}<br>
+                            <strong>Rate per Hour:</strong> ₹{{ driver.rate_per_hour }}<br>
+                        </div>
+                    </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No drivers available.</p>
+                {% endif %}
+            </div>
+
+            <!-- Laborers Section -->
+            <div class="detail-list">
+                <h2>Laborers</h2>
+                {% if laborers %}
+                <ul>
+                    {% for laborer in laborers %}
+
+                    {% if laborer.img %}
+                    <img src="{{ laborer.img.url }}" alt="{{ laborer.name }}" height="250px" width="350px">
+                    {% else %}
+                    <img src="/static/images/default-laborer.png" alt="Default Laborer Image">
+                    {% endif %}
+
+
+                    <div class="info">
+                        <strong>Name:</strong> {{ laborer.name }}<br>
+                        <strong>Aadhar:</strong> {{ laborer.aadhar }}<br>
+                        <strong>Experience:</strong> {{ laborer.exp }} years<br>
+                        <strong>Skills:</strong> {{ laborer.skills }}<br>
+                        <strong>Address:</strong> {{ laborer.address }}<br>
+                        <strong>Phone Number:</strong> {{ laborer.phno }}<br>
+                        <strong>Availability:</strong> {{ laborer.availability|yesno:"Available,Not Available" }}<br>
+                        <strong>Rate per Hour:</strong> ₹{{ laborer.rate_per_hour }}<br>
+                    </div>
+            </div>
+            </li>
+            {% endfor %}
+            </ul>
+            {% else %}
+            <p>No laborers available.</p>
+            {% endif %}
+        </div>
+
+        <a href="{% url 'service_provider_detail' %}">Back to Service Providers List</a>
+        </div>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 500px;
+                margin: 50px auto;
+                background: #826B10;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+                text-decoration: dashed;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                background-color: black;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            .btn:hover {
+                background-color: white;
+            }
+
+            p {
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            a {
+                color: white;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 18px;
+                text-align: left;
+            }
+
+            th,
+            td {
+                padding: 12px;
+                border: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #f4f4f4;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                background-color: black;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            .c1 {
+                display: flex;
+                justify-content: space-between;
+                /* Aligns elements to both ends of the container */
+                align-items: center;
+                /* Centers items vertically */
+                padding: 20px;
+                float: right;
+                background-color: black;
+                /* Primary blue color */
+                color: #fff;
+                text-decoration: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px
+            }
+
+            .btn:hover {
+                background-color: #826B10;
+            }
+
+            .container {
+                width: 90%;
+                max-width: 400px;
+                margin: auto;
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        </style>
+        <style>
+            .a1 {
+                padding: 10px 20px;
+                background-color: black;
+                /* Primary blue color */
+                color: #fff;
+                /* White text */
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                text-decoration: none;
+                /* Remove underline */
+                display: inline-block;
+                margin: 5px;
+                /* Add spacing between buttons */
+                text-align: center;
+            }
+
+            .a1:hover {
+                background-color: #826B10;
+                /* Darker blue on hover */
+                color: #ffffff;
+                /* Ensure text stays white */
+            }
+
+            .a1:active {
+                background-color: #003d80;
+                /* Even darker when active */
+            }
+        </style>
+
+
+        <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+    </body>
+
+    </html>

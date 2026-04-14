@@ -1,143 +1,176 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-  <style>
-        .username {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .c1{
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    .username {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .c1 {
         display: flex;
-        justify-content: space-between; /* Aligns elements to both ends of the container */
-        align-items: center; /* Centers items vertically */
+        justify-content: space-between;
+        /* Aligns elements to both ends of the container */
+        align-items: center;
+        /* Centers items vertically */
         padding: 20px;
         float: right;
-        background-color: black; /* Primary blue color */
-        color: #fff; 
+        background-color: black;
+        /* Primary blue color */
+        color: #fff;
         text-decoration: none;
         padding: 10px;
         border-radius: 5px;
         cursor: pointer;
         font-size: 16px
     }
-  </style>
-  
-    
 
-    <div class="container">
+    .container {
+        width: 90%;
+        max-width: 400px;
+        margin: auto;
+    }
+</style>
+
+
+
+<div class="container">
     <h2>Complaints</h2>
-    <a href="{% url 'home' %}" class="c1" >Home</a><br>
+    <a href="{% url 'home' %}" class="c1">Home</a><br>
     {% for booking in bookings %}
-    <a href="{% url 'create_complaint' booking.id %}" class="a1">Create Complaint</a>  <!-- Adjust booking_id accordingly -->
+    <a href="{% url 'create_complaint' booking.id %}" class="a1">Create Complaint</a>
+    <!-- Adjust booking_id accordingly -->
     {% endfor %}
     <ul>
         {% for complaint in complaints %}
-            <li>
-                <strong>Complaint for Booking #{{ complaint.booking.id }}:</strong>
-                {{ complaint.complaint_text }}<br>
-                <small>Created at: {{ complaint.created_at }}</small><br>
-                <strong>Status:</strong> {% if complaint.resolved %}Resolved{% else %}Pending{% endif %}
-                {% if not complaint.resolved %}
-                    <a href="{% url 'resolve_complaint' complaint.id %}">Mark as Resolved</a>
-                {% endif %}
-            </li>
+        <li>
+            <strong>Complaint for Booking #{{ complaint.booking.id }}:</strong>
+            {{ complaint.complaint_text }}<br>
+            <small>Created at: {{ complaint.created_at }}</small><br>
+            <strong>Status:</strong> {% if complaint.resolved %}Resolved{% else %}Pending{% endif %}
+            {% if not complaint.resolved %}
+            <a href="{% url 'resolve_complaint' complaint.id %}">Mark as Resolved</a>
+            {% endif %}
+        </li>
         {% empty %}
-            <p>No complaints available.</p>
+        <p>No complaints available.</p>
         {% endfor %}
     </ul>
 </div>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            background: #826B10;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            text-decoration:dashed;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .btn {
-            width: 100%;
-            background-color: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        p {
-            text-align: center;
-            margin-top: 15px;
-        }
-        a {
-            color: white;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .a1 {
-            padding: 10px 20px;
-            background-color: black; /* Primary blue color */
-            color: #fff; /* White text */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: none; /* Remove underline */
-            display:inline-block;
-            margin: 5px; /* Add spacing between buttons */
-            text-align: center;
-            justify-content: right;
-            
-        }
-    
-        .a1:hover {
-            background-color: #826B10; /* Darker blue on hover */
-            color: #ffffff; /* Ensure text stays white */
-        }
-    
-        .a1:active {
-            background-color: #003d80; /* Even darker when active */
-        }
-    </style>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
 
-  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: #826B10;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        text-decoration: dashed;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        width: 100%;
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    a {
+        color: white;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .a1 {
+        padding: 10px 20px;
+        background-color: black;
+        /* Primary blue color */
+        color: #fff;
+        /* White text */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        /* Remove underline */
+        display: inline-block;
+        margin: 5px;
+        /* Add spacing between buttons */
+        text-align: center;
+        justify-content: right;
+
+    }
+
+    .a1:hover {
+        background-color: #826B10;
+        /* Darker blue on hover */
+        color: #ffffff;
+        /* Ensure text stays white */
+    }
+
+    .a1:active {
+        background-color: #003d80;
+        /* Even darker when active */
+    }
+</style>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 </html>

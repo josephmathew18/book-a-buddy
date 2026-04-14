@@ -2,179 +2,187 @@
 {% load static %} {%block content%}
 <!DOCTYPE html>
 <html>
-<head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-  <style>
-        .username {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-  </style>
-  
-    
-    <p style="color:white" class="username">Welcome {{ request.user.username }} ({{ request.user.role }})</p>
-    
 
-    
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+  .username {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
 
-  
-  <section class="contact_section layout_padding">
-    <div class="contact_bg_box">
-        <div class="img-box">
-            <img src="{% static 'images/contact-bg.jpg' %}"  alt="">
-        </div>
+  .container {
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+  }
+</style>
+
+
+<p style="color:white" class="username">Welcome {{ request.user.username }} ({{ request.user.role }})</p>
+
+
+
+
+
+<section class="contact_section layout_padding">
+  <div class="contact_bg_box">
+    <div class="img-box">
+      <img src="{% static 'images/contact-bg.jpg' %}" alt="">
     </div>
-    <div class="container">
-        <div class="heading_container heading_center">
-            <h2>
-                Get In touch
-            </h2>
-        </div>
-        <div class="row">
-            <div class="col-md-7 mx-auto">
-                <form method="post" action="">
-                    {% csrf_token %}
-                    <div class="contact_form-container">
-                        {{ form.as_p }}
-                        <div class="btn-box">
-                            <button type="submit">
-                                Send
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li class="{{ message.tags }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
+  </div>
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>
+        Get In touch
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-md-7 mx-auto">
+        <form method="post" action="">
+          {% csrf_token %}
+          <div class="contact_form-container">
+            {{ form.as_p }}
+            <div class="btn-box">
+              <button type="submit">
+                Send
+              </button>
             </div>
-        </div>
+          </div>
+        </form>
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
     </div>
+  </div>
 </section>
 
-  
-  <!-- info section -->
-  <section class="info_section ">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="info_logo">
-            <a class="navbar-brand" href="index.html">
-              <span>
-                DL Connect
-              </span>
-            </a>
-            <p>
-              Provide a seamless interface for customers to book on-call drivers and labours. 
-            </p>
-          </div>
+
+<!-- info section -->
+<section class="info_section ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="info_logo">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              DL Connect
+            </span>
+          </a>
+          <p>
+            Provide a seamless interface for customers to book on-call drivers and labours.
+          </p>
         </div>
-        <div class="col-md-3">
-          <div class="info_links">
-            <h5>
-              Services
-            </h5>
-            <ul>
-              <li>
-                <a href="">
-                 Book On Call Drivers
-                </a>
-              </li>
-              <li>
-                <a href="">
-                 Book Labours
-                </a>
-              </li>
-              
-            </ul>
-          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info_links">
+          <h5>
+            Services
+          </h5>
+          <ul>
+            <li>
+              <a href="">
+                Book On Call Drivers
+              </a>
+            </li>
+            <li>
+              <a href="">
+                Book Labours
+              </a>
+            </li>
+
+          </ul>
         </div>
-        <div class="col-md-3">
-          <div class="info_info">
-            <h5>
-              Contact Us
-            </h5>
-          </div>
-          <div class="info_contact">
-            <a href="" class="">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <span>
-                Thiruvananthapuram, Kerala
-              </span>
-            </a>
-            <a href="" class="">
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              <span>
-                Call : +91 843245664 
-              </span>
-            </a>
-            <a href="" class="">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <span>
-                dlconnect@gmail.com
-              </span>
-            </a>
-          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info_info">
+          <h5>
+            Contact Us
+          </h5>
         </div>
-        <div class="col-md-3">
-          <div class="info_form ">
-            <h5>
-              Newsletter
-            </h5>
-            <form action="#">
-              <input type="email" placeholder="Enter your email">
-              <button>
-                Subscribe
-              </button>
-            </form>
-            <div class="social_box">
-              <a href="">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-youtube" aria-hidden="true"></i>
-              </a>
-              <a href="">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-              </a>
-            </div>
+        <div class="info_contact">
+          <a href="" class="">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <span>
+              Thiruvananthapuram, Kerala
+            </span>
+          </a>
+          <a href="" class="">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <span>
+              Call : +91 843245664
+            </span>
+          </a>
+          <a href="" class="">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <span>
+              dlconnect@gmail.com
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info_form ">
+          <h5>
+            Newsletter
+          </h5>
+          <form action="#">
+            <input type="email" placeholder="Enter your email">
+            <button>
+              Subscribe
+            </button>
+          </form>
+          <div class="social_box">
+            <a href="">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-youtube" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- end info_section -->
-  <style>
-   
-  
-   a {
-            color: white;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        .message_input {
+<!-- end info_section -->
+<style>
+  a {
+    color: white;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .message_input {
     height: 100px;
     width: 100%;
     resize: none;
-}
+  }
 </style>
 
 
 
-  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 </html>

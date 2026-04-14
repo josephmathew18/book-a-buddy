@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +17,9 @@
         }
 
         .container {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
+            width: 90%;
             max-width: 400px;
+            margin: auto;
         }
 
         h2 {
@@ -61,34 +59,35 @@
         .btn:hover {
             background-color: #0056b3;
         }
-
     </style>
 </head>
+
 <body>
 
     <div class="container">
         {% if request.GET.already_paid %}
-    <div class="status-icon success">✔️</div>
-    <h2 class="success">Payment Already Made</h2>
-    <p>You have already paid for this booking.</p>
-    <p><strong>Booking ID:</strong> {{ request.GET.booking_id }}</p>
-{% elif request.GET.transaction_id %}
-    <div class="status-icon success">✔️</div>
-    <h2 class="success">Payment Successful 🎉</h2>
-    <p>Thank you for your payment.</p>
-    <p><strong>Transaction ID:</strong> {{ request.GET.transaction_id }}</p>
-    <p><strong>Amount Paid:</strong> ${{ request.GET.amount_paid }}</p>
-    <p><strong>Booking ID:</strong> {{ request.GET.booking_id }}</p>
-{% else %}
-    <div class="status-icon error">❌</div>
-    <h2 class="error">Payment Failed</h2>
-    <p>Unfortunately, your payment was not successful.</p>
-    <p>Please try again or contact support.</p>
-{% endif %}
+        <div class="status-icon success">✔️</div>
+        <h2 class="success">Payment Already Made</h2>
+        <p>You have already paid for this booking.</p>
+        <p><strong>Booking ID:</strong> {{ request.GET.booking_id }}</p>
+        {% elif request.GET.transaction_id %}
+        <div class="status-icon success">✔️</div>
+        <h2 class="success">Payment Successful 🎉</h2>
+        <p>Thank you for your payment.</p>
+        <p><strong>Transaction ID:</strong> {{ request.GET.transaction_id }}</p>
+        <p><strong>Amount Paid:</strong> ${{ request.GET.amount_paid }}</p>
+        <p><strong>Booking ID:</strong> {{ request.GET.booking_id }}</p>
+        {% else %}
+        <div class="status-icon error">❌</div>
+        <h2 class="error">Payment Failed</h2>
+        <p>Unfortunately, your payment was not successful.</p>
+        <p>Please try again or contact support.</p>
+        {% endif %}
 
 
         <a href="{% url 'home' %}" class="btn">Return Home</a>
     </div>
 
 </body>
+
 </html>
