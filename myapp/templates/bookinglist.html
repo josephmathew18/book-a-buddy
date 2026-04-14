@@ -83,7 +83,7 @@
 
             <table>
                 <tr>
-                    <th>ID</th>
+                    <th>Name</th>
                     <th>Service</th>
                     <th>Start</th>
                     <th>End</th>
@@ -97,7 +97,7 @@
                 {% if bookings %}
                 {% for booking in bookings %}
                 <tr>
-                    <td>{{ booking.id }}</td>
+                    <td>{{ booking.service_provider.username }}</td>
 
                     <td>
                         {% if booking.driver %}
