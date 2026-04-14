@@ -21,7 +21,19 @@ class DriverForm(forms.ModelForm):
         model=Driver
         fields='__all__'
 
+class ServiceProviderChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        try:
+            return obj.serviceprovider.company_name
+        except Exception:
+            return obj.username
+            
 class BookingForm(forms.ModelForm):
+    service_provider = ServiceProviderChoiceField(
+        queryset=Users.objects.none(),  # Will be overridden in __init__
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+
     class Meta:
         model = Booking
         fields = ['service_provider','driver', 'labour', 'date','start_time', 'end_time']  # Fields that the user can select
