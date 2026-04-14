@@ -114,11 +114,14 @@
 
     <div class="container">
       <h2>Login</h2>
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn" type="submit">Login</button>
-      </form>
+ <form method="POST">
+    {% csrf_token %}  
+
+    <input type="text" name="username">
+    <input type="password" name="password">
+
+    <button type="submit">Login</button>
+</form>
       <p>Don't have an account? <a href="{% url 'reg' %}">Register here</a>.</p>
     </div>
 
