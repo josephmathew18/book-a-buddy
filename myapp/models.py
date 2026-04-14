@@ -82,7 +82,7 @@ class Booking(models.Model):
     is_paid = models.BooleanField(default=False)  # New field to track payment status
 
     def __str__(self):
-        return f"Booking {self.id} - Paid: {self.is_paid}"
+        return f"Booking by {self.customer.username} for {self.service_provider.username} - Paid: {self.is_paid}"
 
     def save(self, *args, **kwargs):
         if not self.tracking_code:
