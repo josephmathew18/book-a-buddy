@@ -34,7 +34,14 @@ class BookingForm(forms.ModelForm):
             }),
             'start_time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
             'end_time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-        }   
+        }
+        
+    def __init__(self, *args, **kwargs):
+        super(BookingForm, self).__init__(*args, **kwargs)
+        self.fields['driver'].queryset = Driver.objects.filter(availability=True)
+        self.fields['labour'].queryset = Labour.objects.filter(availability=True)
+        self.fields['service_provider'].queryset = Users.objects.filter(role='serviceprovider')
+
     def clean_date(self):
         date = self.cleaned_data.get('date')
         if not date:
