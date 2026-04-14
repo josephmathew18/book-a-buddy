@@ -920,11 +920,23 @@ a:focus {
 }
 
 .container {
-  width: 90%;
-  max-width: 400px;
-  margin: auto;
+  width: 100%;
+  max-width: 1200px;
+  /* ✅ FIX */
+  margin: 0 auto;
   padding: 20px;
 }
+
+.login-container {
+  width: 100%;
+  max-width: 450px;
+  /* ✅ only login stays small */
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+}
+
 
 /* ✅ ADD THIS AT THE BOTTOM */
 @media (max-width: 600px) {
